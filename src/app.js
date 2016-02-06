@@ -8,6 +8,11 @@ angApp.config(function($routeProvider){
       controller:'userController'
   })
 
+  .when('/login',{
+      templateUrl:'partials/login.html',
+      controller:'loginController'
+  })
+
   .when('/edit/:id',{
       templateUrl:'partials/edit.html',
       controller:'userController'
@@ -23,7 +28,7 @@ angApp.config(function($routeProvider){
 
 
 
-angApp.controller('userController',['$scope','$location', 'UserFactory','$routeParams',function($scope,$location,UserFactory,$routeParams){
+angApp.controller('userController',['$rootScope','$scope','$location', 'UserFactory','$routeParams',function($rootScope,$scope,$location,UserFactory,$routeParams){
    
    $scope.save = function(){
 
@@ -47,6 +52,8 @@ angApp.controller('userController',['$scope','$location', 'UserFactory','$routeP
       UserFactory.delete(id);
       $location.path("/");
     }
+
+    $scope.credentials = {};
 
     $scope.getAllMembers();
    
@@ -89,5 +96,14 @@ angApp.factory('UserFactory',function(){
         }
 
   }
+});
+
+angApp.directive('userRow', function () {
+  template =  '<tr ng-repeat="person in members track by $index"><td>{{person.id}}</td><td>{{person.firstName}}  {{person.lastName}}</td>'+
+              '<td><a href="#/edit/{{$index}}">Edit</a> || <button class="btn btn-mini btn-danger"'+
+           ' ng-click="delete($index)">Delete</button></td></tr>';
+    return {
+        template: template
+           };
 });
 

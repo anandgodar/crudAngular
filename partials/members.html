@@ -1,8 +1,8 @@
 <div ng-controller="userController">   
-   <table class="table table-striped">
-            <tr><th>#</th><th>Name</th><th><a href="#/new">Add </a></th></tr>
-            <tr ng-repeat="person in members track by $index"><td>{{person.id}}</td><td>{{person.firstName}}  {{person.lastName}}</td>
+   <table class="table table-striped" user-row>
+           <!-- <tr><th>#</th><th>Name</th><th><a href="#/new">Add </a></th></tr>
+             <tr ng-repeat="person in members track by $index"><td>{{person.id}}</td><td>{{person.firstName}}  {{person.lastName}}</td>
             	<td><a href="#/edit/{{$index}}">Edit</a> || <button class="btn btn-mini btn-danger"
-						ng-click="delete($index)">Delete</button></td></tr>
+						ng-click="delete($index)">Delete</button></td></tr> -->
     </table>
 </div>    
